@@ -5,9 +5,6 @@ from model_mommy import mommy
 from stranger_parties.invite.models import Guest, Event, Invite
 
 
-# from unittest import TestCase
-
-
 class GuestTestCase(TestCase):
     def setUp(self) -> None:
         self.guest = mommy.make(Guest)
@@ -54,9 +51,10 @@ class GuestTestCase(TestCase):
         self.assertEqual(self.guest.USERNAME_FIELD, "username")
         self.assertEqual(self.guest.REQUIRED_FIELDS, ["email"])
 
-    # TODO: Não está enviando o e-mail
     def test_d_invite_guest(self):
         e = Event.objects.create(
             name="Aniversário do Guanabara", date_time=timezone.now()
         )
-        i = Invite.objects.create(guest=self.guest, event=e)
+        Invite.objects.create(guest=self.guest, event=e)
+
+        self.assertEqual(self.guest.total_invites, 1)
