@@ -1,27 +1,33 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Invite</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block email_title %}Você recebeu um convite!{% endblock %}
+{% block content %}
     <p>Olá {{ guest_name }},</p>
     <p>
-        Você foi convidado a participar do evento {{ event_name }}, que estará acontecendo no dia
+        Você recebeu um convite para participar do evento {{ event_name }}, que estará acontecendo no dia
         {{ event_date }}, às {{ event_hour }}.
     </p>
 
-    <p>
+    <p style="text-align: center">
         Solicitamos que confirme a sua presença clicando no link abaixo:
         <br>
-        <a href="#">{{ confirm_link }}</a>
+        <a class="btn btn-primary" href="{{ confirm_link }}" target="_blank" style="
+                                                               margin: 0 auto;
+                                                               display: inline-block;
+                                                               color: #ffffff;
+                                                               background-color: #007bff;
+                                                               border: solid 1px #007bff;
+                                                               border-radius: 2px;
+                                                               box-sizing: border-box;
+                                                               cursor: pointer;
+                                                               text-decoration: none;
+                                                               font-size: 14px;
+                                                               font-weight: bold;
+                                                               padding: 12px 25px;
+                                                               border-color: #007bff;
+                                                               margin: 25px auto 0;
+                                                               display: block;
+                                                               text-align: center;
+                                                               width: 200px;
+                                                               ">Confirmar Presença</a>
     </p>
-<br>
-<br>
-<b>Stranger Parties</b><br>
-Direção
-</body>
-</html>
+{% endblock %}
