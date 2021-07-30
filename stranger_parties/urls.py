@@ -28,13 +28,13 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path("", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
     path("api/", include(router.urls)),
     path("api/", include("stranger_parties.invite.urls")),
     path("api/auth/", ObtainJSONWebToken.as_view()),
     re_path(
-        r'^schema(?P<format>\.json|\.yaml)$',
+        r"^schema(?P<format>\.json|\.yaml)$",
         schema_view.without_ui(cache_timeout=0),
-        name='schema-json'
+        name="schema-json",
     ),
 ]

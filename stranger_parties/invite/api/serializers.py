@@ -37,23 +37,14 @@ class GuestSerializer(ModelSerializer):
     class Meta:
         model = Guest
         fields = ["id", "email", "first_name", "password"]
-        extra_kwargs = {
-            'password': {'write_only': True}
-        }
+        extra_kwargs = {"password": {"write_only": True}}
 
 
 class GuestDetailSerializer(ModelSerializer):
     class Meta:
         model = Guest
-        fields = [
-            "id",
-            "email",
-            "first_name",
-            "last_name",
-            "is_active",
-            "last_login",
-        ]
-        read_only_fields = ['id', 'is_active']
+        fields = ["id", "email", "first_name", "last_name", "is_active", "last_login"]
+        read_only_fields = ["id", "is_active"]
 
 
 # ==================[ INVITE ]============================================
@@ -79,5 +70,5 @@ class InviteDetailSerializer(ModelSerializer):
             "link",
             "is_expired",
             "guest",
-            "event"
+            "event",
         ]

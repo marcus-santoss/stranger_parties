@@ -54,18 +54,16 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-            ],
+            ]
         },
-    },
+    }
 ]
 
 # ======================[ WSGI OBJECT ]======================================
 WSGI_APPLICATION = "stranger_parties.wsgi.application"
 
 # ======================[ DATABASES ]=========================================
-DATABASES = {
-    'default': env.db(),
-}
+DATABASES = {"default": env.db()}
 
 # ==================[ CORS ]===================================
 CORS_ORIGIN_ALLOW_ALL = True
@@ -97,17 +95,11 @@ EMAIL_USE_SSL = False
 # ======================[ AUTH_PASSWORD_VALIDATORS ] =========================
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
     },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 # ======================[ DEFAULT PRIMARY KEY FIELD TYPE ]=================
@@ -131,9 +123,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 MEDIA_DIRS = (os.path.join(BASE_DIR, "mediafiles"),)
 
 # ======================[ JWT ] ===========================================
-JWT_AUTH = {
-    "JWT_EXPIRATION_DELTA": datetime.timedelta(minutes=60),
-}
+JWT_AUTH = {"JWT_EXPIRATION_DELTA": datetime.timedelta(minutes=60)}
 # ======================[ REST FRAMEWORK ]=================================
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",

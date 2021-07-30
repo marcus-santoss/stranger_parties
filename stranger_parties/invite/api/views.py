@@ -21,9 +21,7 @@ class GuestViewSet(DefaultMixin, ModelViewSet):
     default_serializer = GuestDetailSerializer
     search_fields = ["email"]
 
-    serializers = {
-        "create": GuestSerializer,
-    }
+    serializers = {"create": GuestSerializer}
 
     def get_queryset(self):
         if self.request.user.is_staff or self.request.user.is_superuser:
@@ -42,7 +40,9 @@ class EventViewSet(DefaultMixin, ModelViewSet):
         if self.request.user.is_staff or self.request.user.is_superuser:
             return self.queryset
 
-        return self.queryset.filter(guest_invitations__guest__email=self.request.user.email)
+        return self.queryset.filter(
+            guest_invitations__guest__email=self.request.user.email
+        )
 
 
 # =====================[ INVITE ]======================================
@@ -51,9 +51,7 @@ class InviteViewSet(DefaultMixin, ModelViewSet):
     default_serializer = InviteDetailSerializer
     filterset_fields = ["guest", "event"]
 
-    serializers = {
-        "create": InviteSerializer
-    }
+    serializers = {"create": InviteSerializer}
 
     def get_queryset(self):
         if self.request.user.is_staff or self.request.user.is_superuser:
@@ -63,7 +61,6 @@ class InviteViewSet(DefaultMixin, ModelViewSet):
 
 
 class AcceptInvite(APIView):
-    
     def get(self, request, key, *args, **kwargs):
         invite = get_object_or_404(Invite, key)
 
@@ -71,11 +68,17 @@ class AcceptInvite(APIView):
             if not invite.confirmed:
                 invite.confirmed = True
                 invite.save()
-                return Response({"detail": "Convite confirmado com sucesso."},
-                                status=status.HTTP_200_OK)
+                return Response(
+                    {"detail": "Convite confirmado com sucesso."},
+                    status=status.HTTP_200_OK,
+                )
             else:
-                return Response({"detail": "Este convite já foi confirmado."},
-                                status=status.HTTP_200_OK)
+                return Response(
+                    {"detail": "Este convite já foi confirmado."},
+                    status=status.HTTP_200_OK,
+                )
         else:
-            return Response({"detail": "Este convite está expirado."},
-                            status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response(
+                {"detail": "Este convite está expirado."},
+                status=status.HTTP_406_NOT_ACCEPTABLE,
+            )

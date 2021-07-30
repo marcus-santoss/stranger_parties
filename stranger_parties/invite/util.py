@@ -42,12 +42,9 @@ class EmailThread(Thread):
 
             return True
         except Exception as ex:
-            raise ValidationError({
-                "mail": [
-                    "Não foi possível enviar a mensagem",
-                    str(ex)
-                ]
-            })
+            raise ValidationError(
+                {"mail": ["Não foi possível enviar a mensagem", str(ex)]}
+            )
 
     def run(self):
         self.send_html_email()

@@ -16,7 +16,7 @@ class BaseModel(models.Model):
 class User(AbstractUser, BaseModel):
     username = None
     email = models.EmailField(null=False, blank=False, unique=True)
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name"]
 
     objects = UserManager()

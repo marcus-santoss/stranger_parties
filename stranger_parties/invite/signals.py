@@ -16,7 +16,7 @@ def send_password(sender, instance: Guest, created, **kwargs):
         context.mail_context = {
             "guest_email": instance.email,
             "api_doc_url": "http://0.0.0.0/api/doc",
-            "login_url": "http://0.0.0.0/auth/"
+            "login_url": "http://0.0.0.0/auth/",
         }
 
         EmailThread(context).run()
