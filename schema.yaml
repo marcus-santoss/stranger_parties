@@ -1,0 +1,583 @@
+swagger: '2.0'
+info:
+  title: Stranger Parties API
+  description: Rest API for the system Strainger Parties
+  termsOfService: https://www.google.com/policies/terms/
+  contact:
+    email: marcuspnascimento@gmail.com
+  license:
+    name: BSD License
+  version: '2'
+host: 0.0.0.0:8000
+schemes:
+  - http
+basePath: /api
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  JWT:
+    type: apiKey
+    in: header
+    name: Authorization
+security:
+  - JWT: []
+paths:
+  /auth/:
+    post:
+      operationId: auth_create
+      summary: API View that receives a POST with a user's username and password.
+      description: Returns a JSON Web Token that can be used for authenticated requests.
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/JSONWebToken'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/JSONWebToken'
+      tags:
+        - auth
+    parameters: []
+  /event/:
+    get:
+      operationId: event_list
+      description: ''
+      parameters:
+        - name: search
+          in: query
+          description: A search term.
+          required: false
+          type: string
+        - name: ordering
+          in: query
+          description: Which field to use when ordering the results.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Event'
+      tags:
+        - event
+    post:
+      operationId: event_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Event'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Event'
+      tags:
+        - event
+    parameters: []
+  /event/{id}/:
+    get:
+      operationId: event_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/EventDetail'
+      tags:
+        - event
+    put:
+      operationId: event_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Event'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Event'
+      tags:
+        - event
+    patch:
+      operationId: event_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Event'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Event'
+      tags:
+        - event
+    delete:
+      operationId: event_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - event
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this event.
+        required: true
+        type: integer
+  /guest/:
+    get:
+      operationId: guest_list
+      description: ''
+      parameters:
+        - name: search
+          in: query
+          description: A search term.
+          required: false
+          type: string
+        - name: ordering
+          in: query
+          description: Which field to use when ordering the results.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Guest'
+      tags:
+        - guest
+    post:
+      operationId: guest_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Guest'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Guest'
+      tags:
+        - guest
+    parameters: []
+  /guest/{id}/:
+    get:
+      operationId: guest_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/GuestDetail'
+      tags:
+        - guest
+    put:
+      operationId: guest_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Guest'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Guest'
+      tags:
+        - guest
+    patch:
+      operationId: guest_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Guest'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Guest'
+      tags:
+        - guest
+    delete:
+      operationId: guest_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - guest
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this guest.
+        required: true
+        type: integer
+  /invite-accept/:
+    get:
+      operationId: invite-accept_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - invite-accept
+    parameters: []
+  /invite/:
+    get:
+      operationId: invite_list
+      description: ''
+      parameters:
+        - name: search
+          in: query
+          description: A search term.
+          required: false
+          type: string
+        - name: ordering
+          in: query
+          description: Which field to use when ordering the results.
+          required: false
+          type: string
+        - name: guest
+          in: query
+          description: ''
+          required: false
+          type: string
+        - name: event
+          in: query
+          description: ''
+          required: false
+          type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/InviteDetail'
+      tags:
+        - invite
+    post:
+      operationId: invite_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Invite'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Invite'
+      tags:
+        - invite
+    parameters: []
+  /invite/{id}/:
+    get:
+      operationId: invite_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/InviteDetail'
+      tags:
+        - invite
+    put:
+      operationId: invite_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/InviteDetail'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/InviteDetail'
+      tags:
+        - invite
+    patch:
+      operationId: invite_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/InviteDetail'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/InviteDetail'
+      tags:
+        - invite
+    delete:
+      operationId: invite_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - invite
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this invite.
+        required: true
+        type: integer
+definitions:
+  JSONWebToken:
+    description: Serializer class used to validate a username and password. 'username'
+      is identified by the custom UserModel.USERNAME_FIELD. Returns a JSON Web Token
+      that can be used to authenticate later calls.
+    required:
+      - email
+      - password
+    type: object
+    properties:
+      email:
+        title: Email
+        type: string
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        minLength: 1
+  Event:
+    description: Event(id, created_at, updated_at, name, date_time)
+    required:
+      - name
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 80
+        minLength: 1
+      date_time:
+        title: Date time
+        type: string
+        format: date-time
+        x-nullable: true
+  Guest:
+    title: Guest
+    description: Guest(id, created_at, updated_at, name, email, phone)
+    required:
+      - email
+      - name
+      - phone
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      email:
+        title: Email
+        type: string
+        format: email
+        maxLength: 254
+        minLength: 1
+      name:
+        title: Name
+        type: string
+        maxLength: 80
+        minLength: 1
+      phone:
+        title: Phone
+        type: string
+        maxLength: 15
+        minLength: 1
+  InviteGuestOnly:
+    description: Invite(id, created_at, updated_at, key, confirmed, guest, event)
+    required:
+      - guest
+    type: object
+    properties:
+      guest:
+        $ref: '#/definitions/Guest'
+  EventDetail:
+    description: Event(id, created_at, updated_at, name, date_time)
+    required:
+      - name
+      - total_invited
+      - confirmed_guests
+      - non_confirmed_guests
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 80
+        minLength: 1
+      date_time:
+        title: Date time
+        type: string
+        format: date-time
+        x-nullable: true
+      total_invited:
+        title: Total invited
+        type: integer
+      confirmed_guests:
+        description: ''
+        type: array
+        items:
+          $ref: '#/definitions/InviteGuestOnly'
+      non_confirmed_guests:
+        description: ''
+        type: array
+        items:
+          $ref: '#/definitions/InviteGuestOnly'
+  InviteEventOnly:
+    description: Invite(id, created_at, updated_at, key, confirmed, guest, event)
+    required:
+      - event
+    type: object
+    properties:
+      event:
+        $ref: '#/definitions/Event'
+      confirmation_link:
+        title: Confirmation link
+        type: string
+        readOnly: true
+  GuestDetail:
+    description: Guest(id, created_at, updated_at, name, email, phone)
+    required:
+      - email
+      - name
+      - phone
+      - total_invites
+      - attended_events
+      - pendent_events
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      email:
+        title: Email
+        type: string
+        format: email
+        maxLength: 254
+        minLength: 1
+      name:
+        title: Name
+        type: string
+        maxLength: 80
+        minLength: 1
+      phone:
+        title: Phone
+        type: string
+        maxLength: 15
+        minLength: 1
+      total_invites:
+        title: Total invites
+        type: integer
+      attended_events:
+        description: ''
+        type: array
+        items:
+          $ref: '#/definitions/InviteEventOnly'
+      pendent_events:
+        description: ''
+        type: array
+        items:
+          $ref: '#/definitions/InviteEventOnly'
+  InviteDetail:
+    description: Invite(id, created_at, updated_at, key, confirmed, guest, event)
+    required:
+      - guest
+      - event
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      key:
+        title: Key
+        type: string
+        format: uuid
+        readOnly: true
+      confirmed:
+        title: Confirmed
+        type: boolean
+      guest:
+        $ref: '#/definitions/Guest'
+      event:
+        $ref: '#/definitions/Event'
+      sent_date:
+        title: Sent date
+        type: string
+        readOnly: true
+      confirmation_link:
+        title: Confirmation link
+        type: string
+        readOnly: true
+      is_expired:
+        title: Is expired
+        type: string
+        readOnly: true
+  Invite:
+    description: Invite(id, created_at, updated_at, key, confirmed, guest, event)
+    required:
+      - guest
+      - event
+    type: object
+    properties:
+      guest:
+        description: ''
+        type: array
+        items:
+          type: integer
+      event:
+        title: Event
+        type: integer
