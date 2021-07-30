@@ -24,11 +24,11 @@ O sistema envia notificações aos usuários quando são cadastrados no sistema 
 são convidados para um evento. Para visualizar as notificações acesse o servidor de e-mails
 através da URL http://0.0.0.0:8025
 
-- Adição de um novo convidado
+- Adição de um novo convidado<br>
   ![img.png](new_guest.png)
 
 
-- Convite
+- Convite<br>
   ![img.png](invite.png)
 
 
