@@ -31,8 +31,6 @@ através da URL http://0.0.0.0:8025
 - Convite<br>
   ![img.png](invite.png)
 
-
-
 ### Documentação da API
 - [Documentação no Postman](https://documenter.postman.com/preview/1606400-f79aa54a-87ca-45b7-8a71-a378d473545d?environment=&versionTag=latest&apiName=CURRENT&version=latest&documentationLayout=classic-double-column&right-sidebar=303030&top-bar=FFFFFF&highlight=EF5B25)
 - [Documentação Interna (ambiente em execução)](http://0.0.0.0:8000)
@@ -160,5 +158,5 @@ curl --location --request GET "http://0.0.0.0:8000/api/event/:id/" \
 Para gerar/atualizar o schema da API Rest, execute o script generate_schema.sh
 dentro do container backend da seguinte forma:
 ```shell
-docker exec -it backend bash /app/binary/generate_schema.sh
+docker exec -it backend bash binary/generate_schema.sh
 ```
