@@ -418,7 +418,7 @@ python-versions = "*"
 name = "pyyaml"
 version = "5.4.1"
 description = "YAML parser and emitter for Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 
@@ -546,7 +546,7 @@ testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", 
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "bbe3c6563eba5a472f0b0448835a4bcaee48049d750674a9fd69401056fdb7d8"
+content-hash = "ff6b22321394eb410786fd445f998b15fa7018d8c8794b1c542bf56834bfb8d2"
 
 [metadata.files]
 appdirs = [
