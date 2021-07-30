@@ -13,11 +13,7 @@ def send_password(sender, instance: Guest, created, **kwargs):
         context.to = [instance.email]
         context.subject = "Welcome to Stranger Parties"
         context.template_notification = "new_guest.html"
-        context.mail_context = {
-            "guest_email": instance.email,
-            "api_doc_url": "http://0.0.0.0/api/doc",
-            "login_url": "http://0.0.0.0/auth/",
-        }
+        context.mail_context = {"guest_email": instance.email}
 
         EmailThread(context).run()
 
@@ -28,14 +24,14 @@ def send_invite(sender, instance: Invite, created, **kwargs):
         context = MailContext()
         context.from_mail = "admin@stranger-parties.com.br"
         context.to = [instance.guest.email]
-        context.subject = "You were invited!!!"
+        context.subject = f"{instance.guest.name}, you were invited!!!"
         context.template_notification = "invite.html"
         context.mail_context = {
-            "guest_name": instance.guest.get_short_name(),
+            "guest_name": instance.guest.name,
             "event_name": instance.event.name,
             "event_date": instance.event.date_time.strftime("%d/%m/%Y"),
             "event_hour": instance.event.date_time.strftime("%H:%M"),
-            "confirm_link": instance.link,
+            "confirm_link": instance.confirmation_link,
         }
 
         EmailThread(context).run()
