@@ -1,0 +1,16 @@
+[run]
+source = stranger_parties
+omit =
+    */__init__.py
+    */settings.py
+    */manager.py
+    */wsgi.py
+    */asgi.py
+    */apps.py
+    */urls.py
+    */admin.py
+    */migrations/*
+    */tests/*
+    */tests.py
+    */router.py
+    htmlcov/*

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Invite</title>
+</head>
+<body>
+    <p>Olá {{ guest_name }},</p>
+    <p>
+        Você foi convidado a participar do evento {{ event_name }}, que estará acontecendo no dia
+        {{ event_date }}, às {{ event_hour }}.
+    </p>
+
+    <p>
+        Solicitamos que confirme a sua presença clicando no link abaixo:
+        <br>
+        <a href="#">{{ confirm_link }}</a>
+    </p>
+<br>
+<br>
+<b>Stranger Parties</b><br>
+Direção
+</body>
+</html>

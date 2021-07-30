@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "stranger_parties"
+version = "0.1.0"
+description = "Api para controle de convidados"
+authors = ["marcus.santos <mpsoulbass@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "3.2.4"
+djangorestframework = "^3.12.4"
+psycopg2-binary = "^2.9.1"
+django-environ = "^0.4.5"
+djangorestframework-jwt = "^1.11.0"
+django-filter = "^2.4.0"
+drf-yasg2 = "^1.19.4"
+django-cors-headers = "^3.7.0"
+
+[tool.poetry.dev-dependencies]
+black = "^21.7b0"
+model-mommy = "^2.0.0"
+coverage = "^5.5"
+pre-commit = "^2.13.0"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

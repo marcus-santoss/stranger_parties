@@ -1,0 +1,16 @@
+- model: core.user
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$260000$aglPuKmbxlidxxZ1Y3AJLO$iFnwZk2BY+1WrcxZ8190tY3sv4zXrmST7EWIAXDQ9BI=
+    last_login: null
+    is_superuser: true
+    first_name: Sys
+    last_name: Admin
+    is_staff: true
+    is_active: true
+    date_joined: 2021-07-29 00:55:10.837983+00:00
+    created_at: 2021-07-29 00:55:11.005549+00:00
+    updated_at: 2021-07-29 00:55:11.005561+00:00
+    email: admin@admin.com
+    groups: [ ]
+    user_permissions: [ ]
