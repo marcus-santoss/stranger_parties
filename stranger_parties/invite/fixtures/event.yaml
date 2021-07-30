@@ -1,0 +1,14 @@
+- model: invite.event
+  pk: 1
+  fields:
+    created_at: 2021-07-30 03:42:56.313032+00:00
+    updated_at: 2021-07-30 03:42:56.313054+00:00
+    name: Festa da musica do piniquin
+    date_time: 2021-08-28 22:00:00+00:00
+- model: invite.event
+  pk: 2
+  fields:
+    created_at: 2021-07-30 03:43:32.221775+00:00
+    updated_at: 2021-07-30 03:43:32.221806+00:00
+    name: Aniversário do Guanabara
+    date_time: 2021-09-07 12:00:00+00:00
