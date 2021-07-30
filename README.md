@@ -19,10 +19,19 @@ Este projeto foi construído com containers docker e possui os seguintes compome
 - Servidor SMTP ( http://0.0.0.0:8025 )
 - Servidor da aplicação ( http://0.0.0.0:8000 )
 
-#### Observações
+#### Notificações
 O sistema envia notificações aos usuários quando são cadastrados no sistema e quando
 são convidados para um evento. Para visualizar as notificações acesse o servidor de e-mails
 através da URL http://0.0.0.0:8025
+
+- Adição de um novo convidado
+  ![img.png](new_guest.png)
+
+
+- Convite
+  ![img.png](invite.png)
+
+
 
 ### Documentação da API
 - [Documentação no Postman](https://documenter.postman.com/preview/1606400-f79aa54a-87ca-45b7-8a71-a378d473545d?environment=&versionTag=latest&apiName=CURRENT&version=latest&documentationLayout=classic-double-column&right-sidebar=303030&top-bar=FFFFFF&highlight=EF5B25)
@@ -145,4 +154,11 @@ curl --location --request GET "http://0.0.0.0:8000/api/event/:id/" \
   "id": "<integer>",
   "date_time": "<dateTime>"
 }
+```
+
+### Gerar arquivo schema.yaml
+Para gerar/atualizar o schema da API Rest, execute o script generate_schema.sh
+dentro do container backend da seguinte forma:
+```shell
+docker exec -it backend bash /app/binary/generate_schema.sh
 ```
