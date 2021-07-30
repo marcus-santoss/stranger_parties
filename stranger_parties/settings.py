@@ -127,7 +127,7 @@ JWT_AUTH = {"JWT_EXPIRATION_DELTA": datetime.timedelta(minutes=60)}
 # ======================[ REST FRAMEWORK ]=================================
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
-    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
+    "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_jwt.authentication.JSONWebTokenAuthentication"
     ],
