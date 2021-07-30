@@ -1,69 +1,71 @@
-from django.shortcuts import get_object_or_404
 from rest_framework import status
+from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-from stranger_parties.core.mixins import DefaultMixin
+from stranger_parties.core.mixins import (
+    DefaultMixin,
+    IntegrityProtectedCreateMixin,
+    ProtectedDestroyMixin,
+)
 from stranger_parties.invite.api.serializers import (
     GuestSerializer,
-    GuestDetailSerializer,
     EventSerializer,
     InviteDetailSerializer,
     InviteSerializer,
+    EventDetailSerializer,
+    GuestDetailSerializer,
 )
 from stranger_parties.invite.models import Guest, Event, Invite
 
 
 # =====================[ GUEST ]=======================================
-class GuestViewSet(DefaultMixin, ModelViewSet):
+class GuestViewSet(
+    DefaultMixin, IntegrityProtectedCreateMixin, ProtectedDestroyMixin, ModelViewSet
+):
     queryset = Guest.objects.all()
-    default_serializer = GuestDetailSerializer
+    default_serializer = GuestSerializer
     search_fields = ["email"]
-
-    serializers = {"create": GuestSerializer}
-
-    def get_queryset(self):
-        if self.request.user.is_staff or self.request.user.is_superuser:
-            return self.queryset
-
-        return self.queryset.filter(email=self.request.user.email)
+    serializers = {"retrieve": GuestDetailSerializer}
 
 
 # =====================[ EVENT ]=======================================
-class EventViewSet(DefaultMixin, ModelViewSet):
+class EventViewSet(
+    DefaultMixin, IntegrityProtectedCreateMixin, ProtectedDestroyMixin, ModelViewSet
+):
     queryset = Event.objects.all()
     default_serializer = EventSerializer
     search_fields = ["name"]
 
-    def get_queryset(self):
-        if self.request.user.is_staff or self.request.user.is_superuser:
-            return self.queryset
-
-        return self.queryset.filter(
-            guest_invitations__guest__email=self.request.user.email
-        )
+    serializers = {"retrieve": EventDetailSerializer}
 
 
 # =====================[ INVITE ]======================================
-class InviteViewSet(DefaultMixin, ModelViewSet):
+class InviteViewSet(
+    DefaultMixin, IntegrityProtectedCreateMixin, ProtectedDestroyMixin, ModelViewSet
+):
     queryset = Invite.objects.all()
     default_serializer = InviteDetailSerializer
     filterset_fields = ["guest", "event"]
 
     serializers = {"create": InviteSerializer}
 
-    def get_queryset(self):
-        if self.request.user.is_staff or self.request.user.is_superuser:
-            return self.queryset
 
-        return self.queryset.filter(guest__email=self.request.user.email)
-
-
+# =====================[ ACCEPT INVITE ]======================================
 class AcceptInvite(APIView):
-    def get(self, request, key, *args, **kwargs):
-        invite = get_object_or_404(Invite, key)
+    def get(self, request, *args, **kwargs):
+        key = request.query_params.get("key", None) or None
+        if key is None:
+            raise ValidationError({"key": "Invite key is required"})
 
+        invite = Invite.objects.filter(key=key)
+        if not invite.exists():
+            raise ValidationError(
+                {"invite": f"Invitation with key {key} was not found in the system"}
+            )
+
+        invite = invite.first()
         if not invite.is_expired:
             if not invite.confirmed:
                 invite.confirmed = True
