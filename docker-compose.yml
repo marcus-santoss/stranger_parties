@@ -6,32 +6,48 @@ services:
     container_name: mail
     hostname: mail
     ports:
-      - 1025:1025
       - 8025:8025
+    networks:
+      - backend
 
   postgres:
     image: docker.io/library/postgres:12
     container_name: postgres
     hostname: postgres
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: "stranger_parties"
+      POSTGRES_HOST: "0.0.0.0"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "airflow" ]
+      interval: 5s
+      retries: 5
     restart: on-failure
-    ports:
-      - 5432:5432
-    env_file:
-      - .env
+    networks:
+      - database
+
 
   backend:
-    image: localhost/stranger_parties:0.1
+    image: docker.io/marcusba/stranger_parties:1.0
     container_name: backend
     hostname: backend
-    command: bash bin/wait-for.sh postgres:5432 -t 10 -- bash bin/start_server.sh
+    command: bash binary/wait-for.sh postgres:5432 -t 10 -- bash binary/start_server.sh
     restart: on-failure
-    env_file:
-      - .env
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: "stranger_parties"
+      POSTGRES_HOST: "0.0.0.0"
     ports:
       - 8000:8000
-    volumes:
-      - .:/app
     depends_on:
       - mailhog
       - postgres
+    networks:
+      - database
+      - backend
 
+networks:
+  backend: {}
+  database: {}

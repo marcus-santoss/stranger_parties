@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  mail:
+    image: docker.io/mailhog/mailhog:v1.0.1
+    container_name: mail
+    hostname: mail
+    ports:
+      - 1025:1025
+      - 8025:8025
+
+  postgres:
+    image: docker.io/library/postgres:12
+    container_name: postgres
+    hostname: postgres
+    restart: on-failure
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+
+  backend:
+    image: localhost/stranger_parties:0.1
+    container_name: backend
+    hostname: backend
+    command: bash binary/wait-for.sh postgres:5432 -t 10 -- bash binary/start_server_dev.sh
+    restart: on-failure
+    stdin_open: true
+    tty: true
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    depends_on:
+      - mailhog
+      - postgres

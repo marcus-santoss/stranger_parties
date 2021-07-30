@@ -334,3 +334,12 @@ pyvenv.cfg
 pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm+all,python,virtualenv,django,git
+# End of https://www.toptal.com/developers/gitignore/api/pycharm+all,python,virtualenv,django,git
+
+.pre-commit-config.yaml
+docker-compose-dev.yml
+docker-compose.yml
+Dockerfile
+Dockerfile_dev
+readme.md
+run_debug.sh
