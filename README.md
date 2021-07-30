@@ -1,8 +1,8 @@
 ### Stranger Parties
 ![](https://img.shields.io/badge/Django-3.2.4-darklime)
 ![](https://img.shields.io/badge/DjangoRestFramework-3.12.4-darkred)
-![](https://img.shields.io/badge/Python-3.9-darkblue)
-![](https://img.shields.io/badge/Postgres-12-blue)
+![](https://img.shields.io/badge/Python-3.9-blue)
+![](https://img.shields.io/badge/Postgres-12-darkblue)
 ![](https://img.shields.io/badge/Podman-3.2.3-purple)
 ![](https://img.shields.io/badge/PreCommit-2.13.0-gold)
 
@@ -18,10 +18,10 @@ Este projeto foi construído com containers docker e possui os seguintes compome
 
 - Banco de dados Postgres
 - Servidor SMTP ( http://0.0.0.0:8025 )<br>
-  ![smtp.png](smtp.png)
+  ![smtp.png](doc/images/smtp.png)
 
 - Servidor da aplicação ( http://0.0.0.0:8000 )<br>
-![backend-doc.png](backend-doc.png)
+  ![backend-doc.png](doc/images/backend-doc.png)
 
 #### Notificações
 O sistema envia notificações aos usuários quando são cadastrados no sistema e quando
@@ -29,11 +29,11 @@ são convidados para um evento. Para visualizar as notificações acesse o servi
 através da URL http://0.0.0.0:8025
 
 - Adição de um novo convidado<br>
-  ![img.png](new_guest.png)
+  ![img.png](doc/images/new_guest.png)
 
 
 - Convite<br>
-  ![img.png](invite.png)
+  ![img.png](doc/images/invite.png)
 
 ### Documentação da API
 - [Documentação no Postman](https://documenter.postman.com/preview/1606400-f79aa54a-87ca-45b7-8a71-a378d473545d?environment=&versionTag=latest&apiName=CURRENT&version=latest&documentationLayout=classic-double-column&right-sidebar=303030&top-bar=FFFFFF&highlight=EF5B25)
@@ -89,7 +89,7 @@ curl --location --request POST "http://0.0.0.0:8000/api/guest/" \
 #### Adicionar Eventos
 ```shell
 curl --location --request POST "http://0.0.0.0:8000/api/event/" \
---header "Authorization: <API Key>"
+--header "Authorization: JWT <API Key>"
 --data-raw '{
   "name": "<string>",
   "date_time": "<dateTime>"
@@ -98,7 +98,7 @@ curl --location --request POST "http://0.0.0.0:8000/api/event/" \
 #### Convidar Usuários para eventos
 ```shell
 curl --location --request POST "http://0.0.0.0:8000/api/invite/" \
---header "Authorization: <API Key>" \
+--header "Authorization: JWT <API Key>" \
 --data-raw "{
     "guest": [
         "<integer:guest_id>",

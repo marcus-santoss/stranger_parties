@@ -333,4 +333,7 @@ modules.xml
 pyvenv.cfg
 pip-selfcheck.json
 
+#Remove
+docker-compose-dev.yml
+Dockerfile_dev
 # End of https://www.toptal.com/developers/gitignore/api/pycharm+all,python,virtualenv,django,git
