@@ -3,7 +3,11 @@
 ![](https://img.shields.io/badge/DjangoRestFramework-3.12.4-silver)
 ![](https://img.shields.io/badge/Python-3.9-cyan)
 ![](https://img.shields.io/badge/Postgres-12-blue)
-![](https://img.shields.io/badge/Docker-Podman-blue)
+![](https://img.shields.io/badge/Docker-Podman-purple)
+![](https://img.shields.io/badge/Flake8-*-gold)
+![](https://img.shields.io/badge/Bandit-*-gold)
+![](https://img.shields.io/badge/Black-*-gold)
+![](https://img.shields.io/badge/PreCommit-*-gold)
 
 #### Projeto
 Sistema para realização da gestão de convidados e eventos
