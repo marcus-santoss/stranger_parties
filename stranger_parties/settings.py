@@ -66,25 +66,9 @@ WSGI_APPLICATION = "stranger_parties.wsgi.application"
 DATABASES = {"default": env.db()}
 
 # ==================[ CORS ]===================================
-CORS_ORIGIN_ALLOW_ALL = True
-
-# ==================[ CACHE ]===================================
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": "redis://0.0.0.0:6379/0",
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#         }
-#     }
-# }
+# CORS_ORIGIN_ALLOW_ALL = True
 
 # ======================[ EMAIL ] ============================================
-# EMAIL_BACKEND = env("EMAIL_BACKEND")
-# EMAIL_HOST = env("EMAIL_HOST")
-# EMAIL_PORT = env("EMAIL_PORT", cast=int)
-# EMAIL_USE_TLS = env("EMAIL_USE_TLS", cast=bool)
-# EMAIL_USE_SSL = env("EMAIL_USE_SSL", cast=bool)
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "0.0.0.0"
@@ -124,6 +108,7 @@ MEDIA_DIRS = (os.path.join(BASE_DIR, "mediafiles"),)
 
 # ======================[ JWT ] ===========================================
 JWT_AUTH = {"JWT_EXPIRATION_DELTA": datetime.timedelta(minutes=60)}
+
 # ======================[ REST FRAMEWORK ]=================================
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",

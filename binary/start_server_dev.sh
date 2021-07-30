@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Initializing the system..."
 
 # Executa migrações

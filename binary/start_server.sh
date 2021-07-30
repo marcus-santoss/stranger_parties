@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Initializing the system..."
 
 # Executa migrações
@@ -8,7 +10,7 @@ python manage.py migrate invite
 python manage.py migrate
 
 # Insere o super user
-python manage.py loaddata super-user
+python manage.py /loaddata super-user
 python manage.py loaddata guest
 python manage.py loaddata event
 
