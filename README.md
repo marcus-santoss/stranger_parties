@@ -1,13 +1,10 @@
 ### Stranger Parties
 ![](https://img.shields.io/badge/Django-3.2.4-darklime)
-![](https://img.shields.io/badge/DjangoRestFramework-3.12.4-silver)
-![](https://img.shields.io/badge/Python-3.9-cyan)
+![](https://img.shields.io/badge/DjangoRestFramework-3.12.4-darkred)
+![](https://img.shields.io/badge/Python-3.9-darkblue)
 ![](https://img.shields.io/badge/Postgres-12-blue)
-![](https://img.shields.io/badge/Docker-Podman-purple)
-![](https://img.shields.io/badge/Flake8-*-gold)
-![](https://img.shields.io/badge/Bandit-*-gold)
-![](https://img.shields.io/badge/Black-*-gold)
-![](https://img.shields.io/badge/PreCommit-*-gold)
+![](https://img.shields.io/badge/Podman-3.2.3-purple)
+![](https://img.shields.io/badge/PreCommit-2.13.0-gold)
 
 #### Projeto
 Sistema para realização da gestão de convidados e eventos
