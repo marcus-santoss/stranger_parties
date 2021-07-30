@@ -16,8 +16,11 @@ uma maneira rapida e fácil de consultar informações sobre eventos e convidado
 Este projeto foi construído com containers docker e possui os seguintes compomentes:
 
 - Banco de dados Postgres
-- Servidor SMTP ( http://0.0.0.0:8025 )
-- Servidor da aplicação ( http://0.0.0.0:8000 )
+- Servidor SMTP ( http://0.0.0.0:8025 )<br>
+  ![smtp.png](smtp.png)
+
+- Servidor da aplicação ( http://0.0.0.0:8000 )<br>
+![backend-doc.png](backend-doc.png)
 
 #### Notificações
 O sistema envia notificações aos usuários quando são cadastrados no sistema e quando
@@ -159,4 +162,14 @@ Para gerar/atualizar o schema da API Rest, execute o script generate_schema.sh
 dentro do container backend da seguinte forma:
 ```shell
 docker exec -it backend bash binary/generate_schema.sh
+```
+
+Para fazer o download do schema.yaml pelo navegador acesse a seguinte URL:
+```shell
+http://0.0.0.0:8000/schema.yaml
+```
+
+Para fazer o download do schema.json pelo navegador acesse a seguinte URL:
+```shell
+http://0.0.0.0:8000/schema.json
 ```
